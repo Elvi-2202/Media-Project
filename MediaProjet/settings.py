@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     "users",
     "rest_framework",
     "MediaProjet",
+    #'rest_framework_simplejwt',
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -125,3 +127,26 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# REST_FRAMEWORK
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
+    #'DEFAULT_AUTHENTICATION_CLASSES': (
+    # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # ),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+# Spectacular
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Todo API",
+    "DESCRIPTION": "API for Todo app",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+}
+
+# Configuration ImageKit.io
+IMAGEKIT_PUBLIC_KEY = 'public_lcpjVDPZDgP+tVCOEbnaYHn2/p8='      
+IMAGEKIT_PRIVATE_KEY = 'private_NadT49ZmX4q+whdMKG8xxa7lhuY='    
+IMAGEKIT_URL_ENDPOINT = 'https://ik.imagekit.io/pe0fyyuct'

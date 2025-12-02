@@ -1,7 +1,10 @@
 from django.urls import path
-from . import views
+from .views import Ping
+from .views import Version
+
 
 urlpatterns = [
-    path("version", views.version, name="version"),
-    path("ping", views.ping, name="ping"),
+    path("version", Version.as_view(), name="version"),
+    path("ping", Ping.as_view(), name="ping"),
+   
 ]
