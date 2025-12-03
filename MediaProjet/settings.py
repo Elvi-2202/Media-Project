@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "MediaProjet",
     #'rest_framework_simplejwt',
     "drf_spectacular",
+    "media",
 ]
 
 MIDDLEWARE = [
