@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 
+import os
+
 import media
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -85,14 +87,27 @@ WSGI_APPLICATION = "MediaProjet.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql", 
-        "POSTGRES_USER": "media",
-        "POSTGRES_PASSWORD": "media",
-        "POSTGRES_DB": "media",
-        "HOST": "db",
-        "PORT": "5432",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("PSQL_DB", "media"),         
+        "USER": os.getenv("PSQL_USER", "media"),       
+        "PASSWORD": os.getenv("PSQL_PASSWORD", "media"), 
+        "HOST": os.getenv("DB_HOST", "db"),           
+        "PORT": os.getenv("DB_PORT", "5432"),          
     }
 }
+
+MONGO = {
+    "HOST": os.getenv("MONGO_HOST", "mongo"),          
+    "PORT": int(os.getenv("MONGO_PORT", 27017)),       
+    "USER": os.getenv("MONGO_USER", "media"),          
+    "PASSWORD": os.getenv("MONGO_PASSWORD", "media"),  
+}
+REDIS = {
+    "HOST": os.getenv("REDIS_HOST", "redis"),              
+    "PORT": int(os.getenv("REDIS_PORT", 6379)),             
+    "PASSWORD": os.getenv("REDIS_PASSWORD", "media"),                      # numéro de la DB Redis
+}
+
 
 
 # Password validation

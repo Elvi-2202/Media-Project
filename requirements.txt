@@ -3,3 +3,7 @@ drf-spectacular
 djangorestframework
 djangorestframework-simplejwt
 requests
+psycopg2-binary
+pymongo
+redis
+
