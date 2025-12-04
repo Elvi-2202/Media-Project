@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
+
+import media
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -82,8 +85,12 @@ WSGI_APPLICATION = "MediaProjet.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql", 
+        "POSTGRES_USER": "media",
+        "POSTGRES_PASSWORD": "media",
+        "POSTGRES_DB": "media",
+        "HOST": "db",
+        "PORT": "5432",
     }
 }
 
@@ -133,10 +140,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
-    #'DEFAULT_AUTHENTICATION_CLASSES': (
-    # 'rest_framework_simplejwt.authentication.JWTAuthentication',
-    # ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    
 }
 
 # Spectacular
@@ -151,3 +159,10 @@ SPECTACULAR_SETTINGS = {
 IMAGEKIT_PUBLIC_KEY = 'public_lcpjVDPZDgP+tVCOEbnaYHn2/p8='      
 IMAGEKIT_PRIVATE_KEY = 'private_NadT49ZmX4q+whdMKG8xxa7lhuY='    
 IMAGEKIT_URL_ENDPOINT = 'https://ik.imagekit.io/pe0fyyuct'
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5), 
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),   
+    "ROTATE_REFRESH_TOKENS": True,                
+    "AUTH_HEADER_TYPES": ("Bearer",),             
+}
