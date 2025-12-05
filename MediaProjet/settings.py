@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "users",
     "rest_framework",
     "MediaProjet",
-    #'rest_framework_simplejwt',
+    'rest_framework_simplejwt',
     "drf_spectacular",
     "media",
 ]
